@@ -7,7 +7,7 @@
 
     <form class="registerForm">
       <el-row type="flex" class="row-bg">
-        <el-col :span="6">
+        <el-col :span="5">
           <section class="span_register_data">
             昵称
           </section>
@@ -19,7 +19,7 @@
         </el-col>
       </el-row>
       <el-row type="flex" class="row-bg">
-        <el-col :span="6">
+        <el-col :span="5">
           <section class="span_register_data">
             手机号
           </section>
@@ -31,7 +31,7 @@
         </el-col>
       </el-row>
       <el-row type="flex" class="row-bg">
-        <el-col :span="6">
+        <el-col :span="5">
           <section class="span_register_data">
             密码
           </section>
@@ -53,7 +53,6 @@
       @closeTip="closeAlertTip"
       :alertText="alertText">
     </alert-tip>
-    <router-view></router-view>
   </div>
 </template>
 
