@@ -1,21 +1,26 @@
-# vue-client
+##  vue实现的demo
 
-> A Vue.js project
+> 基于vue + vuex + axios +element ui实现的demo
 
-## Build Setup
+## 演示
+> 使用chrome，打开开发者工具，开启手机调试模式
 
-``` bash
-# install dependencies
+## 安装构建
+>确保已经安装了vue-cli,webpack
+
+
+```
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 开发环境
+npm run start
 
-# build for production with minification
-npm run build
+# 打包项目
+npm run build (nginx配置指定到dist文件地址)
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 关于接口数据
+
+使用的是easy mock
