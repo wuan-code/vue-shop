@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <template v-if="isLogined">
       <h2>welcome {{users.username}}</h2>
       <h3>{{users.slogan}}</h3>
@@ -26,18 +25,17 @@
 </template>
 
 <script>
-  import {mapGetters,mapActions} from 'vuex'
+  import {mapGetters, mapActions} from 'vuex'
   import ElButton from "../../../node_modules/element-ui/packages/button/src/button"
   export default {
     components: {ElButton},
     data () {
       return {
-        msg: 'Just a demo!',
       }
     },
     methods: {
       ...mapActions(
-          ['resetLogin']
+        ['resetLogin']
       )
     },
     created () {
@@ -51,22 +49,24 @@
         'isLogined'
       ])
     },
-    watch:{
-    }
+    watch: {}
   }
 </script>
 <style lang="scss" scoped>
   @import '../../assets/scss/mixin';
-  h1, h2,h3 {
+
+  h1, h2, h3 {
     text-align: center;
     font-weight: normal;
   }
-  .el-button{
+
+  .el-button {
     width: 100%;
-    .reset{
-      @include sc(.8rem,#12b7f5);
+    .reset {
+      @include sc(.8rem, #12b7f5);
     }
   }
+
   a {
     color: #12b7f5;
   }

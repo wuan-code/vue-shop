@@ -92,3 +92,17 @@ npm run build (nginx配置指定到dist文件地址)
 ├── index.html                                  // 入口html文件
 .
 ```
+
+
+## 打包出现的问题
+- [x] 如果执行<code><font color=#c7254e size=3>npm run build</font></code>报错
+```
+Tip: built files are meant to be served over an HTTP server.
+  Opening index.html over file:// won't work.
+```
+因为vue-cli的默认配置中, publishPath是用绝对目录,
+所以dist文件夹里的文件必须放在服务器的根目录,
+如果你想本地打开的话, 可以在npm run build完成之后执行以下命令:
+```
+npm install -g http-server // 该命令只需执行一次, 安装过之后, 以后就不需要重复安装了.
+xz```

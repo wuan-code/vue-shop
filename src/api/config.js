@@ -1,9 +1,10 @@
-// const baseURL = 'http://server.api.yb/api/'
-const baseURL = 'https://easy-mock.com/mock/5cb6c6aeec4e9324bcb0c396/api/'
+// 设置默认路由
+const baseURL = process.env.NODE_ENV === 'development'
+  ? 'https://easy-mock.com/mock/5cb6c6aeec4e9324bcb0c396/api/'
+  : 'https://easy-mock.com/mock/5cb6c6aeec4e9324bcb0c396/api/';
 
 module.exports = {
   /* -----------------------------  基础配置  -------------------------------- */
-
   cdnUrl: '',
   baseURL: baseURL,
   timeout: 5000,
@@ -24,8 +25,8 @@ module.exports = {
 
   /* -------------------------------  路由  --------------------------------- */
 
-  login: baseURL + 'login',
-  logout: baseURL + 'logout',
+  login: 'login',
+  logout: 'logout',
 
   /* ------------------------------------------------------------------------ */
 
