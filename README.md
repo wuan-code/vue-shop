@@ -131,7 +131,10 @@ Tip: built files are meant to be served over an HTTP server.
 如果你想本地打开的话, 可以在npm run build完成之后执行以下命令:
 ```
 npm install -g http-server // 该命令只需执行一次, 安装过之后, 以后就不需要重复安装了.
-xz```
+xz
+```
+
+
 
 ## 截图
 ![image](https://raw.githubusercontent.com/yaobin24/vue-shop/master/screenshots/home.jpg)
