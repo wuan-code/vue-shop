@@ -132,3 +132,13 @@ Tip: built files are meant to be served over an HTTP server.
 ```
 npm install -g http-server // 该命令只需执行一次, 安装过之后, 以后就不需要重复安装了.
 xz```
+
+## 截图
+![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/home.jpg)
+
+![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/login.jpg)
+
+![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/register.jpg)
+
+
+
