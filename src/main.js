@@ -14,14 +14,26 @@ import store from './store'
 // 引入过滤器
 import * as filters from './tool/filter'
 
+// 懒加载
+import VueLazyload from 'vue-lazyload'
 
+// 使用SVG
+import './assets/svg/iconfont'
 
-Vue.config.productionTip = false
 
 // 使用过滤器
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
 Vue.use(ElementUI)
+Vue.use(VueLazyload)
+
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,   //预加载的宽高比
+  error: 'dist/error.png',//图片加载失败时使用的图片源
+  loading: 'dist/loading.gif',//图片加载的路径
+  attempt: 1//尝试加载次数
+})
 
 
 /* eslint-disable no-new */

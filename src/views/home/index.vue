@@ -1,16 +1,75 @@
 <template>
-    <div>
+  <div class="home">
+    <template v-if="isLogined">
+      <h2>welcome {{users.username}}</h2>
+      <h3>{{users.slogan}}</h3>
+      <el-button>
+        <router-link to="/login?type=reset" class="reset">
+          重新登录
+        </router-link>
+      </el-button>
+      <br/>
+      <el-button @click="resetLogin()">
+        清除缓存
+      </el-button>
+    </template>
+    <template v-else>
+      <h3>
+        <router-link to="/login">
+          登录
+        </router-link>
+      </h3>
+    </template>
 
-    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        created () {
-
-        },
-        mounted () {
-
-        }
+  import {mapGetters, mapActions} from 'vuex'
+  import ElButton from "../../../node_modules/element-ui/packages/button/src/button"
+  export default {
+    data () {
+      return {}
+    },
+    methods: {
+      ...mapActions([
+        'resetLogin',
+        'homeInit'
+      ])
+    },
+    created () {
+      this.homeInit()
+    },
+    mounted () {
+    },
+    computed: {
+      ...mapGetters([
+        'users',
+        'isLogined',
+      ])
+    },
+    watch: {},
+    components: {
+      ElButton,
     }
+  }
 </script>
+<style lang="scss" scoped>
+  @import '../../assets/scss/mixin';
+
+  h1, h2, h3 {
+    text-align: center;
+    font-weight: normal;
+  }
+
+  .el-button {
+    width: 100%;
+    .reset {
+      @include sc(.8rem, #12b7f5);
+    }
+  }
+
+  a {
+    color: #12b7f5;
+  }
+</style>

@@ -1,6 +1,9 @@
 import axios from 'axios'
 import QS from 'qs'
-import apiConfig from './config.js'
+import apiConfig from './../config'
+import jwtToken from './../tool/jwt-token'
+
+
 import router from '@/router'
 
 
@@ -28,14 +31,13 @@ service.defaults.headers = {
  */
 service.interceptors.request.use(
   request => {
-    if (window.localStorage.ACCESS_TOKEN) {
-      request.headers.Authorization = 'Bearer ' + window.localStorage.ACCESS_TOKEN
+    if (jwtToken.getToken()) {
+      request.headers.Authorization = 'Bearer ' + jwtToken.getToken()
     }
 
     // 参数格式转换
     if (['post', 'put', 'delete'].includes(request.method)) {
       request.data = QS.stringify(request.data);
-
     }
     return request
   }, error => {
@@ -54,7 +56,7 @@ service.interceptors.response.use(response => {
 
   // 登录失效，跳转到首页
   if (response.data.code === 401) {
-    window.localStorage.removeItem('ACCESS_TOKEN')
+    jwtToken.removeToken()
     router.push('/Login')
   }
 

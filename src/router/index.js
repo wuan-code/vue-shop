@@ -2,8 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
 import * as types from '../store/type'
+import jwtToken from './../tool/jwt-token'
+
 
 import home from '@/views/home/home.vue'
+import my from '@/views/my/index.vue'
 import login from '@/views/login/login.vue'
 import forget from '@/views/forget/index.vue'
 import smsForget from '@/views/forget/smsForget.vue'
@@ -24,9 +27,15 @@ const router = new Router({
       path: '/home',
       name: 'home',
       component: home,
-      // meta: {
-      //   requiresAuth: true
-      // }
+    },
+    {
+      path: '/my',
+      name: 'my',
+      component: my,
+      meta: {
+        requiresAuth: true,
+        go:'login'
+      }
     },
     {
       path: '/login',
@@ -65,11 +74,12 @@ router.beforeEach((to, from, next) => {
   // 判断该路由是否需要登录权限
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // 如果本地存在 access_token，则继续导航
-    if (window.localStorage.ACCESS_TOKEN) {
+    if (jwtToken.getToken()) {
       next()
     } else {
+      let path = '/login'
       next({
-        path: '/',
+        path: path,
         query: {
           redirect: to.fullPath
         }

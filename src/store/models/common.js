@@ -1,6 +1,10 @@
 import * as types from '../type'
 import $axios from '@/api'
-import * as api from '../../api/config'
+import api from './../../config'
+import jwtToken from './../../tool/jwt-token'
+
+
+// import * as api from '../../api/config'
 import {Message, Loading} from 'element-ui'
 
 
@@ -9,9 +13,9 @@ import {Message, Loading} from 'element-ui'
  * @type {{isLogined: boolean, isLoading: boolean, loadingInstance: null}}
  */
 const state = {
-  isLogined: false,       // 登录状态
-  isLoading: false,       // 加载状态
-  loadingInstance: null   // 加载实例
+  isLogined: false,         // 登录状态
+  isLoading: false,         // 加载状态
+  loadingInstance: null,    // 加载实例
 }
 
 /**
@@ -20,7 +24,7 @@ const state = {
  */
 const getters = {
   isLogined: state => state.isLogined,
-  isLoading: state => state.isLoading
+  isLoading: state => state.isLoading,
 }
 
 
@@ -33,15 +37,14 @@ const actions = {
   /**
    * 退出登录
    * @param commit
+   * @note 如果用户退出成功,清除localstorage的token
    */
   logout({commit}) {
     // 改变loding状态
     commit(types.TOGGLE_LOADING_STATUS)
     $axios.post(api.logout).then(response => {
       commit(types.TOGGLE_LOADING_STATUS)
-      // 如果用户退出成功
       if (response.data.logout) {
-        // 清除 localstorage 中的 ACCESS_TOKEN
         commit(types.USER_LOGOUT)
         // 检测登录状态
         commit(types.CHECKOUT_LOGIN_STATUS)
@@ -65,6 +68,7 @@ const actions = {
   /**
    * 清除缓存，重新登录
    * @param commit
+   * @note 退出登录，修改登录状态，清除用户信息
    */
   resetLogin({commit}){
     // 改变loding状态
@@ -76,22 +80,16 @@ const actions = {
         showClose: true
       })
     }
-    // 退出登录
     commit(types.USER_LOGOUT)
-    // 修改登录状态
     commit(types.CHECKOUT_LOGIN_STATUS)
-    // 清除用户信息
-    commit(types.LOAD_USER_INFO,{})
-
+    commit(types.LOAD_USER_INFO, {})
     Message({
       message: '缓存清理成功，可重新登录',
       type: api.successType,
       duration: 2000,
       showClose: true
     })
-  }
-
-
+  },
 }
 
 /**
@@ -104,7 +102,7 @@ const mutations = {
    * @note 根据access_token判断是否登录
    */
     [types.CHECKOUT_LOGIN_STATUS](state) {
-    state.isLogined = !!window.localStorage.ACCESS_TOKEN
+    state.isLogined = !!jwtToken.getToken()
   },
 
   /**
@@ -138,9 +136,9 @@ const mutations = {
    *
    */
     [types.USER_LOGOUT](state) {
-      window.localStorage.removeItem('ACCESS_TOKEN')
-      window.sessionStorage.removeItem('users')
-    },
+    jwtToken.removeToken()
+    window.localStorage.removeItem('users')
+  },
 
   /**
    * 添加用户token
@@ -148,7 +146,7 @@ const mutations = {
    * @param token
    */
     [types.USER_TOKEN](state, token){
-    window.localStorage.setItem('ACCESS_TOKEN', token)
+      jwtToken.setToken(token)
   },
 }
 

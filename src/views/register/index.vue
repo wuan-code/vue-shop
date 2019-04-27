@@ -119,7 +119,6 @@
         handler: function () {   //特别注意，不能用箭头函数，箭头函数，this指向全局
           // 可以过滤是否是手机号,密码长度等
 
-
           // 使用filter，判断该数组是否存在空值
           this.allInput = this.$options.filters.validateArray(this.userData)
         },

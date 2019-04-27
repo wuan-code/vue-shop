@@ -1,55 +1,50 @@
 <template>
-  <div class="hello">
-    <template v-if="isLogined">
-      <h2>welcome {{users.username}}</h2>
-      <h3>{{users.slogan}}</h3>
-      <el-button>
-        <router-link to="/login?type=reset" class="reset">
-          重新登录
-        </router-link>
-      </el-button>
-      <br/>
-      <el-button @click="resetLogin()">
-        清除缓存
-      </el-button>
-    </template>
-    <template v-else>
-      <h3>
-        <router-link to="/login">
-          登录
-        </router-link>
-      </h3>
-    </template>
-
+  <div class="home">
+    <home-swipe></home-swipe>
+    <home-classify></home-classify>
+    <home-news></home-news>
+    <home-goods-list></home-goods-list>
+    <home-footer></home-footer>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
-  import ElButton from "../../../node_modules/element-ui/packages/button/src/button"
+  import homeSwipe from "./children/homeSwipe.vue"
+  import homeClassify from "./children/homeClassify.vue"
+  import homeNews from "./children/homeNews.vue"
+  import homeGoodsList from "./children/homeGoodsList.vue"
+  import HomeFooter from "../../components/footer/index.vue"
+
   export default {
-    components: {ElButton},
     data () {
-      return {
-      }
+      return {}
     },
     methods: {
-      ...mapActions(
-        ['resetLogin']
-      )
+      ...mapActions([
+        'resetLogin',
+        'homeInit'
+      ])
     },
     created () {
+      this.homeInit()
     },
     mounted () {
-
     },
     computed: {
       ...mapGetters([
         'users',
-        'isLogined'
+        'isLogined',
       ])
     },
-    watch: {}
+    watch: {},
+    components: {
+      homeSwipe,
+      homeClassify,
+      homeNews,
+      homeGoodsList,
+      HomeFooter,
+    }
   }
 </script>
 <style lang="scss" scoped>
@@ -70,4 +65,5 @@
   a {
     color: #12b7f5;
   }
+
 </style>
