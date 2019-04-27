@@ -134,11 +134,11 @@ npm install -g http-server // 该命令只需执行一次, 安装过之后, 以�
 xz```
 
 ## 截图
-![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/home.jpg)
+![image](https://raw.githubusercontent.com/yaobin24/vue-shop/master/screenshots/home.jpg)
 
-![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/login.jpg)
+![image](https://raw.githubusercontent.com/yaobin24/vue-shop/master/screenshots/login.jpg)
 
-![image](https://github.com/yaobin24/vue-shop/blob/master/screenshots/register.jpg)
+![image](https://raw.githubusercontent.com/yaobin24/vue-shop/master/screenshots/register.jpg)
 
 
 
