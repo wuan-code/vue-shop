@@ -40,7 +40,7 @@ const actions = {
    * @note 如果用户退出成功,清除localstorage的token
    */
   logout({commit}) {
-    // 改变loding状态
+    // 改变loading状态
     commit(types.TOGGLE_LOADING_STATUS)
     $axios.post(api.logout).then(response => {
       commit(types.TOGGLE_LOADING_STATUS)
@@ -71,7 +71,7 @@ const actions = {
    * @note 退出登录，修改登录状态，清除用户信息
    */
   resetLogin({commit}){
-    // 改变loding状态
+    // 改变loading状态
     if (!state.isLogined) {
       Message({
         message: '未登录，请重新操作',

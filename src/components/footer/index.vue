@@ -10,12 +10,12 @@
       </span>
     </section>
 
-    <section @click="linkTo('/classify')" class="guide_item">
+    <section @click="linkTo('/category')" class="guide_item">
       <svg class="icon" aria-hidden="true" id="home">
-        <use xlink:href="#icon-fenlei" :style="{color:active ==='classify' ?'#3a8ee6':''}">
+        <use xlink:href="#icon-fenlei" :style="{color:active ==='category' ?'#3a8ee6':''}">
         </use>
       </svg>
-      <span :style="{color:active ==='classify' ?'#3a8ee6':''}">分类</span>
+      <span :style="{color:active ==='category' ?'#3a8ee6':''}">分类</span>
     </section>
 
     <section @click="linkTo('/news')" class="guide_item">
@@ -56,7 +56,6 @@
       if (newActive) {
         this.active = newActive
       }
-      console.log(this.active)
     },
     watch: {},
     components: {},

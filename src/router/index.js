@@ -11,6 +11,8 @@ import login from '@/views/login/login.vue'
 import forget from '@/views/forget/index.vue'
 import smsForget from '@/views/forget/smsForget.vue'
 import register from '@/views/register/index.vue'
+import category from '@/views/category/index.vue'
+import news from '@/views/news/index.vue'
 
 
 Vue.use(Router)
@@ -34,7 +36,7 @@ const router = new Router({
       component: my,
       meta: {
         requiresAuth: true,
-        go:'login'
+        go: 'login'
       }
     },
     {
@@ -63,6 +65,14 @@ const router = new Router({
     {
       path: '/register',
       component: register,
+    },
+    {
+      path: '/category',
+      component: category,
+    },
+    {
+      path: '/news',
+      component: news,
     },
   ]
 })

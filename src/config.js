@@ -31,6 +31,7 @@ export default {
   homeInfo: 'homeInfo',
   initGoods: 'initGoods',
 
+  category: 'category',
 
 
   /* ------------------------------------------------------------------------ */

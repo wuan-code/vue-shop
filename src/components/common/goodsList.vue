@@ -1,16 +1,16 @@
 <template>
-  <section class="home-goods-list">
+  <section class="goods-list">
+    <img v-if="promotionSpus" v-lazy="promotionSpus[0].imgUrl" class="goods-hot" @click="open(promotionSpus[0].link)">
     <h2 class="goods-list-title">{{title}}</h2>
-    <section class="home-goods-list_box">
+    <section class="goods-list_box">
       <ul>
-        <img v-if="homeGoodsList.hot" v-lazy="homeGoodsList.hot.img"  class="goods-hot">
-        <li  v-for="item in homeGoodsList.goods" :key="item.id" @click="open(item.id)">
+        <li v-for="item in commoditySpus" :key="item.skuId" @click="open(item.skuId)">
           <div class="list">
             <div class="goods-image">
-              <img v-lazy="item.img" alt="图片">
+              <img :src="item.imgUrl" alt="图片">
             </div>
-            <p class="goods-name">{{item.name}}</p>
-            <p class="selling-point">{{item.selling_point}}</p>
+            <p class="goods-name">{{item.name | text(10)}}</p>
+            <p class="selling-point">{{item.brief | text(10)}}</p>
             <p class="goods-price">￥{{item.price}}</p>
           </div>
         </li>
@@ -20,35 +20,36 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
   export default {
+    props: [
+      'title',
+      'promotionSpus',
+      'commoditySpus',
+    ],
     data(){
-      return {
-        title: "爆款专区"
-      }
+      return {}
     },
     methods: {
-      open: function(id) {
+      open: function (id) {
 //        this.$router.push({ path: "goodDetail", query: { id: id ,source_type:'首页爆款专区'} });
       }
     },
-    computed: {
-      ...mapGetters([
-        'homeGoodsList',
-      ])
-    },
+    computed: {},
     created(){
     },
     mounted(){
     },
     watch: {},
-    components: {
-    },
+    components: {},
   }
 </script>
-<style lang="scss">
-  @import '../../../assets/scss/mixin';
 
+<style lang="scss">
+  @import '../../assets/scss/mixin';
+
+  .goods-list{
+    padding-bottom: 2rem;
+  }
   .goods-list-title {
     margin: .5rem;
     height: 1.1rem;
@@ -70,14 +71,14 @@
     vertical-align: middle;
   }
 
-  .goods-hot{
+  .goods-hot {
     border: 0;
     vertical-align: middle;
     width: 100%;
   }
 
-  .home-goods-list_box {
-    margin-bottom: 2rem;
+  .goods-list_box {
+    padding-bottom: 2rem;
     .list {
       height: 7rem;
       background: white;
@@ -95,9 +96,8 @@
     }
 
     ul {
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-
+      overflow-x: auto;
+      padding-bottom: 1.5rem;
       li {
         list-style: none;
       }
@@ -115,7 +115,6 @@
         margin-bottom: .2rem
       }
     }
-
 
     .goods-name {
       height: 0.9rem;
