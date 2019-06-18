@@ -1,0 +1,11 @@
+.tab-position {
+  position: absolute;
+  height: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background: #fff; }
+  .tab-position p, .tab-position span, .tab-position input {
+    font-family: Helvetica Neue, Tahoma, Arial; }
+
+.el-tabs--left .el-tabs__item.is-left {
+  text-align: center; }

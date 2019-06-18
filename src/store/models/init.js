@@ -83,8 +83,7 @@ const actions = {
    * @returns {Promise.<void>}
    */
   async initGoods({commit}, page = 1) {
-    let map = {page: page}
-    await $axios.get(config.initGoods, map).then(response => {
+    await $axios.post(config.initGoods).then(response => {
       commit(types.HOME_GOODS_LIST, response.data)
     }).catch(error => {
       Message({

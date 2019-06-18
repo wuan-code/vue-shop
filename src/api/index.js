@@ -38,6 +38,7 @@ service.interceptors.request.use(
     // 参数格式转换
     if (['post', 'put', 'delete'].includes(request.method)) {
       request.data = QS.stringify(request.data);
+      console.log(request.data)
     }
     return request
   }, error => {
